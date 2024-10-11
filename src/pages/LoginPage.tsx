@@ -1,41 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../store/store';
-import { login } from '../store/actions/authActions';
 import styles from './LoginPage.module.css';
 import logo from '../assets/images/img/img_logo01.png';
-import { RootState } from '../store/reducers/rootReducer';
 import useDecodedToken from "../hooks/useDecodedToken";
+import { LoginFormData } from 'src/type/formType';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser } from 'src/services/redux/slice/userSlice';
+import { RootState, AppDispatch } from '../services/redux/store';
 
 const LoginPage: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const decodedToken = useDecodedToken();
-  const { loading, error, token } = useSelector((state: RootState) => state.auth); // token 추가
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, error } = useSelector((state: RootState) => state.user);
 
-  const [data, setData] = useState<{ id: string; pw: string }>({
-    id: '',
-    pw: '',
+  const [loginData, setLoginData] = useState<LoginFormData>({
+    userId: '',
+    password: '',
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData({
-      ...data,
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLoginData({
+      ...loginData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(login({ id: data.id, password: data.pw }));
+  
+    let newData: LoginFormData = {
+      userId: loginData.userId,
+      password: loginData.password,
+    };
+  
+    dispatch(loginUser(newData))
   };
 
   useEffect(() => {
     if (decodedToken) {
-      navigate('/me'); // 이미 로그인된 사용자는 마이페이지로 이동
+      navigate('/me');
     }
-  }, [decodedToken, navigate]);
+  }, [decodedToken, navigate, loading]);  
 
   return (
     <>
@@ -49,17 +55,17 @@ const LoginPage: React.FC = () => {
         <div className={`${styles.inputBox}`}>
           <input
             type="text"
-            name="id"
+            name="userId"
             placeholder="아이디를 입력해주세요"
-            value={data.id}
+            value={loginData.userId}
             onChange={handleInputChange}
             disabled={loading}
           />
           <input
             type="password"
-            name="pw"
+            name="password"
             placeholder="비밀번호를 입력해주세요"
-            value={data.pw}
+            value={loginData.password}
             onChange={handleInputChange}
             disabled={loading}
           />

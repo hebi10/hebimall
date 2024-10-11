@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -6,9 +6,9 @@ import styles from './HomePage.module.css';
 import { Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
-import ProductList from '../services/api/ProductList';
+import ProductList from '../services/apiComponents/ProductList';
 
-import banners from '../services/data/headBanners';
+import banners from '../services/mockData/mainTopBanners';
 
 const HomePage: React.FC = () => {
   return (

@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance_render as axios } from '../api';
+import { instance as axios } from '../api';
+import placeholderImage from 'src/assets/images/img/placeholder_300.png';
+
 
 export const useProductQuery = () => {
   const result = useQuery({
@@ -15,7 +17,7 @@ export const useProductQuery = () => {
         "name": "상품 로딩중",
         "description": "로딩중 1",
         "price": 100,
-        "imgUrl": "https://placeholder.com/300",
+        "imgUrl": placeholderImage,
         "category": "Electronics"
       },
       {
@@ -23,7 +25,7 @@ export const useProductQuery = () => {
         "name": "상품 로딩중",
         "description": "로딩중 2",
         "price": 200,
-        "imgUrl": "https://placeholder.com/300",
+        "imgUrl": placeholderImage,
         "category": "Books"
       },
       {
@@ -31,8 +33,16 @@ export const useProductQuery = () => {
         "name": "상품 로딩중",
         "description": "로딩중 3",
         "price": 300,
-        "imgUrl": "https://placeholder.com/300",
+        "imgUrl": placeholderImage,
         "category": "Clothing"
+      },
+      {
+        "id": 4,
+        "name": "상품 로딩중",
+        "description": "로딩중 4",
+        "price": 400,
+        "imgUrl": placeholderImage,
+        "category": "Books"
       }
     ],
   });
@@ -40,7 +50,7 @@ export const useProductQuery = () => {
   return result;
 };
 
-export const useFindProductQuery = (id: number) => {
+export const useFindProductQuery = (id: string) => {
   const result = useQuery({
     queryKey: ['product', id],
     queryFn: async () => {
@@ -53,7 +63,7 @@ export const useFindProductQuery = (id: number) => {
       "name": "상품 로딩중",
       "description": `로딩중 ${id}`,
       "price": 100,
-      "imgUrl": "https://placeholder.com/300",
+      "imgUrl": placeholderImage,
       "category": "Electronics"
     }
   });

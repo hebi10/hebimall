@@ -5,7 +5,6 @@ import useDecodedToken from "../hooks/useDecodedToken";
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
   const decodedToken = useDecodedToken();
-  const nickname = localStorage.getItem('nickname');
   const [isCheckingToken, setIsCheckingToken] = useState(true); // 로딩 상태 추가
 
   useEffect(() => {
@@ -26,8 +25,8 @@ const MyPage: React.FC = () => {
       {decodedToken ? (
         <div>
           <p>ID: {decodedToken.userId}</p> {/* userId 출력 */}
-          <p>Role: {decodedToken.role}</p> {/* role 출력 */}
-          <p>Nickname: {nickname}</p> {/* Nickname 출력 */}
+          <p>Nickname: {decodedToken.nickname}</p> {/* Nickname 출력 */}
+          <p>등급: {decodedToken.role}</p> {/* role 출력 */}
         </div>
       ) : (
         <p>Loading...</p>

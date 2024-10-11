@@ -1,8 +1,12 @@
 import axios from 'axios';
+import { LoginFormData } from '../type/formType';
 
 export const instance = axios.create({
   // baseURL: 'http://hebi10.cafe24app.com',
   baseURL: 'https://node-hebimall.onrender.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // 인터셉터를 추가하여 모든 요청에 토큰을 포함시킵니다.
@@ -19,11 +23,6 @@ instance.interceptors.request.use(
   }
 );
 
-interface Credentials {
-  id: string;
-  password: string;
-}
-
 export async function getProducts() {
   try {
     const response = await instance.get('/products');
@@ -33,17 +32,18 @@ export async function getProducts() {
   }
 }
 
-export async function login(credentials: Credentials) {
+export async function login(credentials: LoginFormData) {
   try {
     const response = await instance.post('/auth/login', credentials);
 
     // 로그인 성공 시 JWT 토큰을 로컬 스토리지에 저장
     if (response.data.token) {
-      localStorage.setItem('token', response.data.token); // 'token'이라는 키로 저장
+      localStorage.setItem('userToken', response.data.token); // 'userToken'이라는 키로 저장
     }
 
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Login error:', error.response?.data || error.message);
     throw new Error('Failed to log in.');
   }
 }
