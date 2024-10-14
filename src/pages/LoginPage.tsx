@@ -77,10 +77,12 @@ const LoginPage: React.FC = () => {
         <div className={`${styles.account} pt7_18`}>
           <h2>테스트 계정 정보</h2>
           <p>
+            <strong>어드민 계정</strong><br />
             "id": "admin1234",<br />
             "password": "adminpassword",<br />
             "nickname": "Admin"<br />
             <br />
+            <strong>일반 유저 계정</strong><br />
             "id": "user1234",<br />
             "password": "userpassword",<br />
             "nickname": "User1"<br />

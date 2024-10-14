@@ -7,13 +7,11 @@ import { Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
 import ProductList from '../services/apiComponents/ProductList';
-
 import banners from '../services/mockData/mainTopBanners';
 
 const HomePage: React.FC = () => {
   return (
     <>
-      {/* 메인 슬라이드 */}
       <div>
         <Swiper
           slidesPerView={1}
@@ -32,7 +30,6 @@ const HomePage: React.FC = () => {
             </SwiperSlide>
           ))}
 
-          {/* 커스터마이즈된 네비게이션 버튼 */}
           <div className={styles.swiperButtonPrev}>Prev</div>
           <div className={styles.swiperButtonNext}>Next</div>
         </Swiper>
@@ -40,7 +37,7 @@ const HomePage: React.FC = () => {
       {/* 문구 */}
       <div className={styles.homeContainer}>
         <div className={styles.banner}>
-          <h2>해비몰에 어서오세요 :D</h2>
+          <h2>※ 해비몰에 어서오세요 :D</h2>
           <p>개인 포트폴리오 사이트 입니다. 사용에 주의하세요!</p>
           <button className={styles.shopNowBtn}>사용방법 보러가기</button>
         </div>

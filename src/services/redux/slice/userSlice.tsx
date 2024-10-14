@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { decodeJWT } from 'src/hooks/useDecodedToken';
 import { instance as axios } from 'src/services/api';
-import { LoginCredentials, UserData, UserState } from 'src/type/userType';
+import { LoginCredentials } from 'src/type/formType';
+import { UserData, UserState } from 'src/type/userType';
 
 const initialState: UserState = {
   user: null,

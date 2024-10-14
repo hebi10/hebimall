@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ProfilePage from './pages/ProfilePage';
 import BoardPage from './pages/BoardPage';
+import BoardDetailPage from './pages/BoardDetailPage';
 import AdminPage from './pages/AdminPage';
 import SupportPage from './pages/SupportPage';
 import NoticePage from './pages/NoticePage';
@@ -93,6 +94,7 @@ const Main: React.FC = () => {
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="board" element={<BoardPage />} />
+          <Route path="board/:id" element={<BoardDetailPage />} />
           <Route path="admin" element={<AdminPage />} />
           <Route path="support" element={<SupportPage />} />
           <Route path="notice" element={<NoticePage />} />

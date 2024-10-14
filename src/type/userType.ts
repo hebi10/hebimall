@@ -16,8 +16,3 @@ export interface UserState {
   loading: boolean;
   error: string | null;
 }
-
-export interface LoginCredentials {
-  userId: string;
-  password: string;
-}
