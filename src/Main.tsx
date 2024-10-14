@@ -33,6 +33,7 @@ import { useEffect } from 'react';
 import { decodeJWT } from './hooks/useDecodedToken';
 import { getMydata } from './services/redux/slice/userSlice';
 import { UserData, DecodedToken } from './type/userType';
+import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
@@ -102,8 +103,9 @@ const Main: React.FC = () => {
           <Route path="review" element={<ReviewPage />} />
         </Route>
         <Route element={<UserLayout />}>
-          <Route path=":userId" element={<UserPage />} />
+          <Route path="me/:userId" element={<UserPage />} />
         </Route>
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </App>
   );

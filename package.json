@@ -2,7 +2,7 @@
   "name": "hebimail",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/hebimail/",
+  "homepage": "/hebimail",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@tanstack/react-query": "^5.52.0",

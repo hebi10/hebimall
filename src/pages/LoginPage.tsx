@@ -34,14 +34,14 @@ const LoginPage: React.FC = () => {
       password: loginData.password,
     };
   
-    dispatch(loginUser(newData))
+    dispatch(loginUser(newData));
   };
 
   useEffect(() => {
     if (decodedToken) {
       navigate('/me');
     }
-  }, [decodedToken, navigate, loading]);  
+  }, [decodedToken, navigate, loading, error]);  
 
   return (
     <>
