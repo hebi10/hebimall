@@ -6,25 +6,25 @@ import LandingLayout from './components/layout/LandingLayout';
 import MyPageLayout from './components/layout/MyPageLayout';
 import UserLayout from './components/layout/UserLayout';
 import LoginLayout from './components/layout/LoginLayout';
-import HomePage from './pages/HomePage';
-import CategoryPage from './pages/CategoryPage';
+import HomePage from './pages/common/HomePage';
+import CategoryPage from './pages/product/CategoryPage';
 import ProductPage from './pages/product/ProductDetailPage';
-import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
-import ProfilePage from './pages/ProfilePage';
+import CartPage from './pages/product/CartPage';
+import CheckoutPage from './pages/product/CheckoutPage';
+import SignUpPage from './pages/user/SignUpPage';
+import ProfilePage from './pages/user/ProfilePage';
 import BoardPage from './pages/board/BoardPage';
 import BoardDetailPage from './pages/board/BoardDetailPage';
-import AdminPage from './pages/AdminPage';
-import SupportPage from './pages/SupportPage';
-import NoticePage from './pages/NoticePage';
-import FAQPage from './pages/FAQPage';
-import ReviewPage from './pages/ReviewPage';
-import MyPage from './pages/MyPage';
-import UserPage from './pages/UserPage';
-import SettingPage from './pages/SettingPage';
-import NotFound from './pages/NotFound';
+import AdminPage from './pages/common/AdminPage';
+import SupportPage from './pages/support/SupportPage';
+import NoticePage from './pages/support/NoticePage';
+import FAQPage from './pages/support/FAQPage';
+import ReviewPage from './pages/board/ReviewPage';
+import LoginPage from './pages/user/LoginPage';
+import MyPage from './pages/user/MyPage';
+import UserPage from './pages/common/UserPage';
+import SettingPage from './pages/common/SettingPage';
+import NotFound from './pages/common/NotFound';
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -36,6 +36,7 @@ import { useDispatch } from 'react-redux';
 import { getMydata } from './services/redux/slice/userSlice';
 import { UserData, DecodedToken } from './type/userType';
 import { decodeJWT } from './utils/decodeJWT';
+import WritePage from './pages/write/WritePage';
 
 const Provider: React.FC<{children: ReactNode}> = ({ children }) => {
   const queryClient = new QueryClient();
@@ -103,6 +104,7 @@ const Main: React.FC = () => {
           <Route path="notice" element={<NoticePage />} />
           <Route path="faq" element={<FAQPage />} />
           <Route path="review" element={<ReviewPage />} />
+          <Route path="write" element={<WritePage />} />
         </Route>
         <Route element={<UserLayout />}>
           <Route path="me/:userId" element={<UserPage />} />

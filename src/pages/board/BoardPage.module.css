@@ -32,6 +32,7 @@
   color: #555;
 }
 
-.btn{
+.boardContainer .btn{
   margin-top: 10px;
+  display: block;
 }

@@ -11,9 +11,9 @@ type Posts = {
 }
 
 const BoardPage: React.FC = () => {
-  const { data: posts } = usePostsQuery();
+  const { data: posts, isLoading } = usePostsQuery();
 
-  console.log(posts);
+  if(isLoading) return <p>로딩중...</p>;
 
   return (
     <div className={styles.boardContainer}>
@@ -29,9 +29,8 @@ const BoardPage: React.FC = () => {
           </li>
         ))}
       </ul>
-      <div className='flex-center-box'>
-        <button className={`btn ${styles.btn}`}>글쓰기</button>
-      </div>
+      
+      <Link to="/write" className={`btn ${styles.btn} flex-center-box`}>글쓰기</Link>
     </div>
   );
 };

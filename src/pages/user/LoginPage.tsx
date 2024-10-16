@@ -1,10 +1,10 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoginPage.module.css';
-import logo from '../assets/images/img/img_logo01.png';
+import logo from '../../assets/images/img/img_logo01.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from 'src/services/redux/slice/userSlice';
-import { RootState, AppDispatch } from '../services/redux/store';
+import { RootState, AppDispatch } from '../../services/redux/store';
 import LoginInfo01 from 'src/components/accordion/slice/LoginInfo01';
 import LoginInfo02 from 'src/components/accordion/slice/LoginInfo02';
 import LoginInfo03 from 'src/components/accordion/slice/LoginInfo03';

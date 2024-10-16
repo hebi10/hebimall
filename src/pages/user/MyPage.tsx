@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useDecodedToken from "../hooks/useDecodedToken";
+import useDecodedToken from "../../hooks/useDecodedToken";
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
