@@ -11,9 +11,9 @@ export const usePostsQuery = () => {
     },
     refetchOnWindowFocus: false,
     placeholderData: [
-      {"userId": "로딩중...", "title": "로딩중...", "content": "로딩중..."},
-      {"userId": "로딩중...", "title": "로딩중...", "content": "로딩중..."},
-      {"userId": "로딩중...", "title": "로딩중...", "content": "로딩중..."},
+      {"userId": "작성자...", "title": "제목...", "content": "내용..."},
+      {"userId": "작성자...", "title": "제목...", "content": "내용..."},
+      {"userId": "작성자...", "title": "제목...", "content": "내용..."},
     ],
   });
 
@@ -28,8 +28,7 @@ export const useFindPostsQuery = (id: string) => {
       return data;
     },
     refetchOnWindowFocus: false,
-    placeholderData: 
-    {"userId": "로딩중...", "title": "로딩중...", "content": "로딩중..."}
+    placeholderData: {"userId": "로딩중...", "title": "로딩중...", "content": "로딩중..."}
   });
 
   return result;

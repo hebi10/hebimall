@@ -1,19 +1,6 @@
 import { useState, useEffect } from 'react';
 import { DecodedToken } from 'src/type/userType';
-
-export const decodeJWT = (token: string): DecodedToken | null => {
-  try {
-    const payloadBase64 = token.split('.')[1];
-    if (!payloadBase64) {
-      throw new Error('Invalid token format');
-    }
-    const decodedPayload = atob(payloadBase64);
-    return JSON.parse(decodedPayload);
-  } catch (error) {
-    console.error("Failed to decode JWT:", error);
-    return null;
-  }
-};
+import { decodeJWT } from 'src/utils/decodeJWT';
 
 const useDecodedToken = (): DecodedToken | null => {
   const [decodedToken, setDecodedToken] = useState<DecodedToken | null>(null);

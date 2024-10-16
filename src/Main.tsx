@@ -1,3 +1,5 @@
+import React, { ReactNode, useEffect } from 'react';
+
 import App from './components/App';
 import FullLayout from './components/layout/FullLayout';
 import LandingLayout from './components/layout/LandingLayout';
@@ -6,14 +8,14 @@ import UserLayout from './components/layout/UserLayout';
 import LoginLayout from './components/layout/LoginLayout';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
-import ProductPage from './pages/ProductPage';
+import ProductPage from './pages/product/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ProfilePage from './pages/ProfilePage';
-import BoardPage from './pages/BoardPage';
-import BoardDetailPage from './pages/BoardDetailPage';
+import BoardPage from './pages/board/BoardPage';
+import BoardDetailPage from './pages/board/BoardDetailPage';
 import AdminPage from './pages/AdminPage';
 import SupportPage from './pages/SupportPage';
 import NoticePage from './pages/NoticePage';
@@ -22,22 +24,22 @@ import ReviewPage from './pages/ReviewPage';
 import MyPage from './pages/MyPage';
 import UserPage from './pages/UserPage';
 import SettingPage from './pages/SettingPage';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider as ReduxProvider } from 'react-redux';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import store, { AppDispatch } from './services/redux/store';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { decodeJWT } from './hooks/useDecodedToken';
-import { getMydata } from './services/redux/slice/userSlice';
-import { UserData, DecodedToken } from './type/userType';
 import NotFound from './pages/NotFound';
 
-const queryClient = new QueryClient();
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
+import store, { AppDispatch } from './services/redux/store';
+import { useDispatch } from 'react-redux';
 
-function Provider({ children }: React.PropsWithChildren<{}>) {
+import { getMydata } from './services/redux/slice/userSlice';
+import { UserData, DecodedToken } from './type/userType';
+import { decodeJWT } from './utils/decodeJWT';
+
+const Provider: React.FC<{children: ReactNode}> = ({ children }) => {
+  const queryClient = new QueryClient();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider store={store}>

@@ -1,3 +1,7 @@
+.supportWrap > section{
+  padding-bottom: 30px;
+}
+
 .supportWrap h2{
   font-size: 24px;
   margin-bottom: 20px;

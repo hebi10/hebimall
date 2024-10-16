@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
         <div className={styles.banner}>
           <h2>※ 해비몰에 어서오세요 :D</h2>
           <p>개인 포트폴리오 사이트 입니다. 사용에 주의하세요!</p>
-          <button className={styles.shopNowBtn}>사용방법 보러가기</button>
+          <Link to="/support" className={styles.shopNowBtn}>자세한 내용 확인!</Link>
         </div>
         <section className={styles.featuredProducts}>
           <h2>Featured Products</h2>

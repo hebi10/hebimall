@@ -1,6 +1,6 @@
 import React from 'react';
-import './ProductPage.module.css';
-import { useFindProductQuery } from '../services/queries/useProductQuery';
+import './ProductDetailPage.module.css';
+import { useFindProductQuery } from '../../services/queries/useProductQuery';
 import { useParams } from 'react-router-dom';
 
 const ProductPage: React.FC = () => {
@@ -15,7 +15,7 @@ const ProductPage: React.FC = () => {
       <h1 className="product-title">{product.name}</h1>
       <img src={product.imgUrl} alt={`${product.name} 상품 이미지`} />
       <p className="product-description">가격: {product.price}원</p>
-      <button className="add-to-cart-btn">Add to Cart</button>
+      <button className="btn">Add to Cart</button>
     </div>
   );
 };

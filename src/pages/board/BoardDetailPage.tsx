@@ -11,11 +11,13 @@ const BoardDetailPage: React.FC = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="post-container">
-      <h2 className="board-item-title">{post.title}</h2>
-      <p className="board-item-content">{post.content}</p>
-      <p className="board-item-content">작성자: {post.userId}</p>
-    </div>
+    <>
+      <div className="post-container">
+        <h2 className="board-item-title">[{post.userId}] {post.title}</h2>
+        <p className="board-item-content">{post.content}</p>
+      </div>
+      <button className='btn'>수정하기</button>
+    </>
   );
 };
 

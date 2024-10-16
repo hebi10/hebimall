@@ -1,0 +1,5 @@
+.accordionContent{
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}

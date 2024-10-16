@@ -1,17 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
+import Menu from './Menu';
+import Search from './Search';
+import styles from './Header.module.css';
+
 import logo from '../../assets/images/img/img_logo01.png';
 import logo_mini from '../../assets/images/img/img_miniLogo02.png';
 import icon_cart from "../../assets/images/svg/icon_cart.svg";
 import icon_search from "../../assets/images/svg/icon_search.svg";
 import icon_user from "../../assets/images/svg/icon_user.svg";
-import Menu from './Menu';
-import Search from './Search';
-import styles from './Header.module.css';
 
-/* swiper */
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+type Observer = HTMLDivElement | null;
+
+type HeaderIconProps = {
+  setShowSearch: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function HeaderOptionSwiper() {
+  return (
+    <Swiper
+      spaceBetween={20}
+      slidesPerView="auto"
+    >
+      {['Category', 'Profile', 'Board', 'Support', '', '', ''].map((item, index) => (
+        <SwiperSlide key={`${item}-${index}`}>
+          <Link to={`/${item.toLowerCase()}`}>{item}</Link>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+}
+
+const HeaderIcion: React.FC<HeaderIconProps> = ({ setShowSearch }) => {
+  return (
+    <>
+      <div className={styles.searchIcon} onClick={() => setShowSearch(true)}>
+        <img src={icon_search} alt="검색 아이콘" />
+      </div>
+      <Link to="/cart" className={styles.cart}>
+        <img src={icon_cart} alt="장바구니 아이콘" />
+      </Link>
+      <Link to="/login" className={styles.user}>
+        <img src={icon_user} alt="유저 아이콘" />
+      </Link>
+    </>
+  );
+};
+
 
 const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -27,7 +65,7 @@ const Header: React.FC = () => {
   };
 
   // IntersectionObserver 설정 함수
-  const setupObserver = (node: HTMLDivElement | null) => {
+  const setupObserver = (node: Observer) => {
     const observer = new IntersectionObserver(handleIntersection, { threshold: 0 });
     if (node) observer.observe(node);
 
@@ -52,64 +90,28 @@ const Header: React.FC = () => {
           </li>
           <li className={styles.logoWrap}>
             <h1 className={styles.logo}>
-              <Link to="/">
-                <img src={logo} alt="메인 로고" />
-              </Link>
+              <Link to="/"><img src={logo} alt="메인 로고" /></Link>
             </h1>
           </li>
           <li className={styles.rightBox}>
-            <div className={styles.searchIcon} onClick={() => setShowSearch(true)}>
-              <img src={icon_search} alt="검색 아이콘" />
-            </div>
-            <Link to="/cart" className={styles.cart}>
-              <img src={icon_cart} alt="장바구니 아이콘" />
-            </Link>
-            <Link to="/login" className={styles.user}>
-              <img src={icon_user} alt="유저 아이콘" />
-            </Link>
+            <HeaderIcion setShowSearch={setShowSearch} />
           </li>
         </ul>
 
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-        >
-          {['Category', 'Product', 'Profile', 'Board', 'Support', '', '', ''].map((item, index) => (
-            <SwiperSlide key={`${item}-${index}`}>
-              <Link to={`/${item.toLowerCase()}`}>{item}</Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <HeaderOptionSwiper />
       </header>
 
       <div ref={fixedHeadRef} className={`${styles.fixed_head} ${isSticky ? styles.sticky : ''}`}>
 
         <div className={styles.scrollLogo}>
-          <Link to=""><img src={logo_mini} alt="메인 로고" /></Link>
+          <Link to="/"><img src={logo_mini} alt="메인 로고" /></Link>
 
           <div className={styles.linkBox}>
-            <div className={styles.searchIcon} onClick={() => setShowSearch(true)}>
-              <img src={icon_search} alt="검색 아이콘" />
-            </div>
-            <Link to="/cart" className={styles.cart}>
-              <img src={icon_cart} alt="장바구니 아이콘" />
-            </Link>
-            <Link to="/login" className={styles.user}>
-              <img src={icon_user} alt="유저 아이콘" />
-            </Link>
+            <HeaderIcion setShowSearch={setShowSearch} />
           </div>
         </div>
 
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-        >
-          {['Category', 'Product', 'Profile', 'Board', 'Support', '', '', ''].map((item, index) => (
-            <SwiperSlide key={`${item}-${index}`}>
-              <Link to={`/${item.toLowerCase()}`}>{item}</Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <HeaderOptionSwiper />
       </div>
     </>
   );
