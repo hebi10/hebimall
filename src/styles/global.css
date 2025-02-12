@@ -63,3 +63,10 @@
 [class*="_18price"] { font-size: 18px; line-height: 18px; }
 [class*="_16price"] { font-size: 16px; line-height: 16px; }
 [class*="_14price"] { font-size: 14px; line-height: 14px; }
+
+.wrap{
+  max-width: 640px;
+  min-height: calc(100dvh - 148px);
+  margin: 0 auto;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
+}

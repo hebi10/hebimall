@@ -9,6 +9,7 @@ export interface DecodedToken {
 
 export interface UserData extends DecodedToken {
   token: string;
+  decodedToken?: null;
 }
 
 export interface UserState {

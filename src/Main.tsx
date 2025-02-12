@@ -33,13 +33,11 @@ import { Provider as ReduxProvider } from 'react-redux';
 import store, { AppDispatch } from './services/redux/store';
 import { useDispatch } from 'react-redux';
 
-import { getMydata } from './services/redux/slice/userSlice';
-import { UserData, DecodedToken } from './type/userType';
-import { decodeJWT } from './utils/decodeJWT';
+import { initializeUser } from './services/redux/slice/userSlice';
 import WritePage from './pages/write/WritePage';
 
+const queryClient = new QueryClient();
 const Provider: React.FC<{children: ReactNode}> = ({ children }) => {
-  const queryClient = new QueryClient();
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -48,7 +46,9 @@ const Provider: React.FC<{children: ReactNode}> = ({ children }) => {
           {children}
         </BrowserRouter>
       </ReduxProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools
+        initialIsOpen={true}
+      />
     </QueryClientProvider>
   );
 }
@@ -57,24 +57,7 @@ const Main: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
-    if (token) {
-      const decoded = decodeJWT(token) as DecodedToken;
-      if (decoded && decoded.exp * 1000 > Date.now()) {
-        const userData: UserData = {
-          userId: decoded.userId,
-          role: decoded.role,
-          iat: decoded.iat,
-          exp: decoded.exp,
-          username: decoded.username,
-          nickname: decoded.nickname,
-          token,
-        };
-        dispatch(getMydata(userData));
-      } else {
-        localStorage.removeItem('jwtToken');
-      }
-    }
+    dispatch(initializeUser());
   }, [dispatch]);
 
   return (

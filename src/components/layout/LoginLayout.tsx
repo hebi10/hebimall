@@ -6,13 +6,15 @@ import Footer from '../global/Footer';
 
 const LoginLayout: React.FC = () => {
   return (
-    <div>
-      <SimpleHeader />
-      <main className={`${styles.main} flex-center-box`}>
-        <Outlet />
-      </main>
+    <>
+      <div className={"wrap"}>
+        <SimpleHeader />
+        <main className={`${styles.main} flex-center-box`}>
+          <Outlet />
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

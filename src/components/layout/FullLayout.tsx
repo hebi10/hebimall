@@ -6,13 +6,15 @@ import Footer from '../global/Footer';
 
 const FullLayout: React.FC = () => {
   return (
-    <div>
-      <Header />
-      <main className={styles.main}>
-        <Outlet />
-      </main>
+    <>
+      <div className={"wrap"}>
+        <Header />
+        <main className={styles.main}>
+          <Outlet />
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

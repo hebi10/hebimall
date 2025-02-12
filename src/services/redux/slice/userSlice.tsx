@@ -34,6 +34,37 @@ export const loginUser = createAsyncThunk<
   }
 );
 
+export const initializeUser = createAsyncThunk<
+  UserData | null,
+  void,
+  { rejectValue: string }
+>(
+  'user/initializeUser',
+  async (_, thunkAPI) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded = decodeJWT(token);
+      if (decoded && decoded.exp * 1000 > Date.now()) {
+        try {
+          const response = await axios.get('/auth/me', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          return { ...response.data, decodedToken: decoded } as UserData;
+        } catch (error) {
+          console.warn('Failed to fetch user data:', error);
+          localStorage.removeItem('token');
+          return null;
+        }
+      } else {
+        console.warn('Token is expired');
+        localStorage.removeItem('token');
+        return null;
+      }
+    }
+    return null;
+  }
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -74,6 +105,13 @@ export const userSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload ?? '로그인 실패';
+      })
+      .addCase(initializeUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.decodedToken = action.payload?.decodedToken || null;
+      })
+      .addCase(initializeUser.rejected, (state, action) => {
+        state.error = action.payload ?? '사용자 초기화 실패';
       });
   },
 });

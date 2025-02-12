@@ -3,4 +3,6 @@
   padding: 30px 10px;
   box-sizing: border-box;
   background-color: #e1dfdd;
+  max-width: 640px;
+  margin: 0 auto;
 }

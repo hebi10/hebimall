@@ -71,10 +71,8 @@
 
 .fixed_head {
   display: none;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 1000;
   max-width: 640px;
   padding: 12px 0;

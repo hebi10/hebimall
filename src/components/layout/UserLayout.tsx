@@ -5,13 +5,15 @@ import Footer from '../global/Footer';
 
 const UserLayout: React.FC = () => {
   return (
-    <div>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
+    <>
+      <div className={"wrap"}>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
