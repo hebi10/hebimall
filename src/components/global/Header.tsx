@@ -12,6 +12,7 @@ import logo_mini from '../../assets/images/img/img_miniLogo02.png';
 import icon_cart from "../../assets/images/svg/icon_cart.svg";
 import icon_search from "../../assets/images/svg/icon_search.svg";
 import icon_user from "../../assets/images/svg/icon_user.svg";
+import useDecodedToken from 'src/hooks/useDecodedToken';
 
 type Observer = HTMLDivElement | null;
 
@@ -35,6 +36,7 @@ function HeaderOptionSwiper() {
 }
 
 const HeaderIcion: React.FC<HeaderIconProps> = ({ setShowSearch }) => {
+  const tokenInfo = useDecodedToken();
   return (
     <>
       <div className={styles.searchIcon} onClick={() => setShowSearch(true)}>
@@ -43,7 +45,7 @@ const HeaderIcion: React.FC<HeaderIconProps> = ({ setShowSearch }) => {
       <Link to="/cart" className={styles.cart}>
         <img src={icon_cart} alt="장바구니 아이콘" />
       </Link>
-      <Link to="/login" className={styles.user}>
+      <Link to={tokenInfo ? "/me" :  "/login"} className={styles.user}>
         <img src={icon_user} alt="유저 아이콘" />
       </Link>
     </>

@@ -1,16 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "src/services/redux/store";
 import { WriteBoardData } from "src/type/formType";
-import { createPost } from "src/services/queries/usePostsQuery";
+import { createPost } from "src/lib/queries/usePostsQuery";
 import styles from './WritePage.module.css';
+import useDecodedToken from "src/hooks/useDecodedToken";
 
 const WritePage: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  
-  const { user, decodedToken, loading: userLoading } = useSelector((state: RootState) => state.user);
+  const tokenInfo = useDecodedToken();
 
   const [write, setWrite] = useState<WriteBoardData>({
     title: "",
@@ -38,24 +35,16 @@ const WritePage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!user && !userLoading) {
+    if (!tokenInfo) {
       alert("로그인 후 이용 가능합니다.");
       navigate('/login');
-    } else if (user) {
+    } else if (tokenInfo.userId) {
       setWrite((prev) => ({
         ...prev,
-        authorId: user.userId,
+        authorId: tokenInfo.userId,
       }));
     }
-  }, [user, userLoading, navigate]);
-
-  if (userLoading) {
-    return (
-      <div className={styles.writeContainer}>
-        <p>로딩 중...</p>
-      </div>
-    );
-  }
+  }, [tokenInfo, navigate]);
 
   return (
     <div className={styles.writeContainer}>

@@ -6,8 +6,8 @@ import styles from './HomePage.module.css';
 import { Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
-import ProductList from '../../services/apiComponents/ProductList';
-import banners from '../../services/mockData/mainTopBanners';
+import ProductList from '../../lib/apiComponents/ProductList';
+import banners from '../../lib/mockData/mainTopBanners';
 
 const HomePage: React.FC = () => {
   return (

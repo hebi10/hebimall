@@ -29,23 +29,17 @@ import NotFound from './pages/common/NotFound';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider as ReduxProvider } from 'react-redux';
-import store, { AppDispatch } from './services/redux/store';
-import { useDispatch } from 'react-redux';
 
-import { initializeUser } from './services/redux/slice/userSlice';
 import WritePage from './pages/write/WritePage';
 
 const queryClient = new QueryClient();
-const Provider: React.FC<{children: ReactNode}> = ({ children }) => {
-  
+const Provider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
   return (
     <QueryClientProvider client={queryClient}>
-      <ReduxProvider store={store}>
-        <BrowserRouter basename="/hebimail">
-          {children}
-        </BrowserRouter>
-      </ReduxProvider>
+      <BrowserRouter basename="/hebimail">
+        {children}
+      </BrowserRouter>
       <ReactQueryDevtools
         initialIsOpen={true}
       />
@@ -54,11 +48,10 @@ const Provider: React.FC<{children: ReactNode}> = ({ children }) => {
 }
 
 const Main: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(initializeUser());
-  }, [dispatch]);
+    
+  }, [])
 
   return (
     <App>

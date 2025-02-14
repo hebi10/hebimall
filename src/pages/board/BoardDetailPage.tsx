@@ -1,7 +1,7 @@
 import React from 'react';
 import './BoardPage.module.css';
 import { useParams } from 'react-router-dom';
-import { useFindPostsQuery } from 'src/services/queries/usePostsQuery';
+import { useFindPostsQuery } from 'src/lib/queries/usePostsQuery';
 
 const BoardDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

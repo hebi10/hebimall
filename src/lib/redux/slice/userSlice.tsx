@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { decodeJWT } from 'src/utils/decodeJWT';
-import { instance as axios } from 'src/services/api';
+import { instance as axios } from 'src/lib/api';
 import { LoginCredentials } from 'src/type/formType';
 import { UserData, UserState } from 'src/type/userType';
 

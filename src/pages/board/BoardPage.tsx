@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './BoardPage.module.css';
-import { usePostsQuery } from 'src/services/queries/usePostsQuery';
+import { usePostsQuery } from 'src/lib/queries/usePostsQuery';
 import { Link } from 'react-router-dom';
 
 type Posts = {

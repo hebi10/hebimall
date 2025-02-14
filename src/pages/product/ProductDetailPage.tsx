@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductDetailPage.module.css';
-import { useFindProductQuery } from '../../services/queries/useProductQuery';
+import { useFindProductQuery } from '../../lib/queries/useProductQuery';
 import { useParams } from 'react-router-dom';
 
 const ProductPage: React.FC = () => {

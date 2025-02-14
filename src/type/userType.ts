@@ -29,3 +29,8 @@ export interface User {
   loading: boolean;
   error: unknown | string;
 }
+
+export interface UserLoginData {
+  userId: string,
+  password: string,
+}
